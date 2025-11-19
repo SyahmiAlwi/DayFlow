@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply font-sans bg-pastelCream text-slate-800 min-h-screen;
+  background-image: radial-gradient(circle at 20% 20%, rgba(170, 200, 255, 0.25), transparent 25%),
+    radial-gradient(circle at 80% 0%, rgba(217, 199, 255, 0.15), transparent 20%),
+    radial-gradient(circle at 50% 80%, rgba(170, 200, 255, 0.15), transparent 25%);
+  background-attachment: fixed;
+}
+
+.card {
+  @apply bg-white/80 backdrop-blur rounded-card shadow-soft border border-white/60;
+}
+
+.pill {
+  @apply rounded-full px-3 py-1 text-sm font-medium;
+}
