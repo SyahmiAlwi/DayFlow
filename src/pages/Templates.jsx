@@ -15,10 +15,11 @@ export function Templates() {
   }, [loadTemplates]);
 
   const handleSave = async (template) => {
+    const { id: _id, ...updates } = template;
     if (editing) {
-      await updateTemplate(editing.id, template);
+      await updateTemplate(editing.id, updates);
     } else {
-      await addTemplate(template);
+      await addTemplate(updates);
     }
   };
 

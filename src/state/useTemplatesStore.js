@@ -30,7 +30,12 @@ export const useTemplatesStore = create((set, get) => ({
     set((state) => ({ templates: state.templates.filter((tpl) => tpl.id !== id) }));
   },
   duplicateTemplate: async (template) => {
-    const copy = { ...template, id: undefined, name: `${template.name} Copy` };
+    const copy = {
+      ...template,
+      id: undefined,
+      name: `${template.name} Copy`,
+      tasks: (template.tasks || []).map(({ id: _id, ...rest }) => rest)
+    };
     return get().addTemplate(copy);
   },
   applyTemplate: async (templateId, date = getTodayKey()) => {

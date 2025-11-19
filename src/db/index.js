@@ -88,11 +88,14 @@ export const deleteTemplateInDb = async (id) => {
 };
 
 export const applyTemplateToDate = async (template, date) => {
-  const tasks = (template.tasks || []).map((task) => ({
-    ...task,
-    date,
-    repeat: task.repeat || 'none'
-  }));
+  const tasks = (template.tasks || []).map((task) => {
+    const { id: _ignoredId, ...rest } = task;
+    return {
+      ...rest,
+      date,
+      repeat: task.repeat || 'none'
+    };
+  });
   const ids = await db.tasks.bulkPut(tasks, undefined, { allKeys: true });
   return tasks.map((t, idx) => ({ ...t, id: ids[idx] }));
 };
