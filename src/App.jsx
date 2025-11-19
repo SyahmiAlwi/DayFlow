@@ -8,6 +8,9 @@ function App() {
       <Header />
       <Outlet />
       <BottomNav />
+    <div className="max-w-6xl mx-auto px-4 pb-10">
+      <Header />
+      <Outlet />
     </div>
   );
 }

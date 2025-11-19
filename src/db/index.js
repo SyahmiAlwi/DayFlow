@@ -57,6 +57,12 @@ export const addTaskToDb = async (task) => {
 
   const ids = await db.tasks.bulkPut(occurrences, undefined, { allKeys: true });
   return occurrences.map((occurrence, idx) => ({ ...occurrence, id: ids[idx] }));
+  return db.tasks.where({ date }).sortBy('hour');
+};
+
+export const addTaskToDb = async (task) => {
+  const id = await db.tasks.add(task);
+  return { ...task, id };
 };
 
 export const deleteTaskFromDb = async (id) => {

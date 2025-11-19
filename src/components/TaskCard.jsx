@@ -30,6 +30,17 @@ export function TaskCard({ task, onDelete, onPointerDragStart, onLongPress }) {
         <div className="flex items-center gap-2 min-w-0">
           <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: task.categoryColor || task.color || '#AAC8FF' }}></div>
           <h3 className="font-semibold text-slate-900 truncate">{task.title}</h3>
+export function TaskCard({ task, onDelete, onDragStart }) {
+  return (
+    <article
+      className="card p-4 space-y-2 cursor-grab active:cursor-grabbing transition hover:-translate-y-0.5"
+      draggable
+      onDragStart={(e) => onDragStart(e, task)}
+    >
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="w-3 h-3 rounded-full" style={{ backgroundColor: task.color || '#AAC8FF' }}></span>
+          <h3 className="font-semibold text-slate-900">{task.title}</h3>
         </div>
         <button
           onClick={() => onDelete(task.id)}
@@ -44,6 +55,7 @@ export function TaskCard({ task, onDelete, onPointerDragStart, onLongPress }) {
         {task.tag && <span className="pill bg-pastelLilac/60 text-slate-800">{task.tag}</span>}
         {task.category && <span className="text-xs text-slate-600">{task.category}</span>}
       </div>
+      {task.tag && <span className="pill bg-pastelLilac/60 text-slate-800">{task.tag}</span>}
     </article>
   );
 }
